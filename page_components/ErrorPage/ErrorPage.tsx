@@ -2,8 +2,7 @@ import { ErrorPageProps } from "./ErrorPage.props";
 import styles from './ErrorPage.module.css';
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Htag } from "components/Htag/Htag";
-import { setLocale } from "helpers/locale.helper";
+import { Htag } from "../../components/Htag/Htag";
 
 
 export const ErrorPage = ({ error }: ErrorPageProps): JSX.Element => {
@@ -12,9 +11,9 @@ export const ErrorPage = ({ error }: ErrorPageProps): JSX.Element => {
     let errorText = "";
 
     if (error === 404) {
-        errorText = setLocale(router.locale).error404;
+        errorText = 'Error 404';
     } else {
-        errorText = setLocale(router.locale).error500;
+        errorText = 'Error 500';
     }
 
     return (
