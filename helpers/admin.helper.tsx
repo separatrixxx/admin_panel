@@ -11,8 +11,8 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
         stripe_id: stripeId,
     })
         .then(function (response) {
-            console.log('Success!');
-            alert('Request has been sent');
+            console.log('Client data has been sent to the server, we are waiting for a link');
+            alert('Client data has been sent to the server, we are waiting for a link');
 
             setIsOpen(true);
             setUrl(response.data.url);
@@ -40,8 +40,8 @@ export async function phaseTwo(clientId: string, clientSecret: string) {
             client_secret: clientSecret,
         })
             .then(function (response) {
-                console.log('Success!');
-                alert('Request has been sent');
+                console.log('The data has been sent, we are waiting for the container');
+                alert('The data has been sent, we are waiting for the container');
 
                 localStorage.clear();
             })
