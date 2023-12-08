@@ -12,6 +12,7 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
     })
         .then(function (response) {
             console.log('Success!');
+            alert('Request has been sent');
 
             setIsOpen(true);
             setUrl(response.data.url);
@@ -21,6 +22,7 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
         })
         .catch(function (error) {
             console.log("Error: " + error);
+            alert("Error: " + error);
         });
 }
 
@@ -39,11 +41,13 @@ export async function phaseTwo(clientId: string, clientSecret: string) {
         })
             .then(function (response) {
                 console.log('Success!');
+                alert('Request has been sent');
 
                 localStorage.clear();
             })
             .catch(function (error) {
                 console.log("Error: " + error);
+                alert("Error: " + error);
             });
     }
 }
