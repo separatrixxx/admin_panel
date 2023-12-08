@@ -4,4 +4,42 @@
 	width: 100%;
 	justify-items: center;
 	gap: 60px;
+	background: var(--primary);
+	grid-template-columns: auto;
+	gap: 10px;
+	padding-top: 20px;
+}
+
+.block {
+	background: var(--white);
+	border-radius: 10px;
+	display: none;
+	grid-template-columns: auto;
+	gap: 10px;
+	padding: 10px;
+	justify-items: center;
+}
+
+.block > a {
+	color: var(--primary);
+	cursor: pointer;
+	transition-duration: 300ms;
+}
+
+.block > a:active {
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	
+	filter: brightness(0.9);
+}
+
+.open {
+	display: grid;
+}
+
+@media (min-width: 1024px) {
+	.block > a:hover {
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+		filter: brightness(0.9);
+	}
 }

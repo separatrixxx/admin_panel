@@ -1,5 +1,5 @@
-.input {
-	width: 400px;
+.button {
+    width: 400px;
 	height: 40px;
 	padding: 5px;
 	padding-left: 20px;
@@ -14,40 +14,33 @@
 
 	font-size: 20px;
 	font-weight: 500;
+    margin-top: 10px;
+    cursor: pointer;
+	margin-bottom: 20px;
 }
 
-.input:focus {
-	border: 1px solid var(--white) !important;
-}
+.button:active {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-.input:active {
-	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
-	border-color: var(--accent) !important;
-}
-
-.error_input,
-.error_input:hover,
-.error_input:focus {
-	border: 1px solid var(--error) !important;
+    transform: scale(1.05);
 }
 
 @media (min-width: 1024px) {
-	.input:hover {
+	.button:hover {
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-		border-color: var(--accent);
+		transform: scale(1.05);
 	}
 }
 
 @media (max-width: 1024px) {
-	.input {
+	.button {
 		font-size: 22px;
 	}
 }
 
 @media (max-width: 580px) {
-	.input {
+	.button {
 		width: 300px;
 		height: 40px;
 		padding-left: 15px;
@@ -57,7 +50,7 @@
 }
 
 @media (max-width: 400px) {
-	.input {
+	.button {
 		width: 200px;
 	}
 }
