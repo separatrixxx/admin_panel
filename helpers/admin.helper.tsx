@@ -3,11 +3,11 @@ import axios from "axios";
 
 export async function phaseOne(amoId: string, clientName: string, clientEmail: string, clientPhone: string, stripeId: string,
     setIsOpen: (e: any) => void, setUrl: (e: any) => void, setPaymentLink: (e: any) => void) {
-    await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client', {
+    await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client/', {
         amo_id: amoId,
         client_name: clientName,
-        client_email: clientPhone,
-        client_phone: clientEmail,
+        client_email: clientEmail,
+        client_phone: clientPhone,
         stripe_id: stripeId,
     })
         .then(function (response) {
@@ -32,16 +32,38 @@ export async function phaseTwo(clientId: string, clientSecret: string) {
     if (client) {
         let clientJSON = JSON.parse(client);
 
-        await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/add_container', {
+        await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/add_container?timeout=12000', {
             amo_id: clientJSON.new_client.amo_id,
             client_name: clientJSON.new_client.client_name,
             uuid: clientJSON.uuid,
             client_id: clientId,
             client_secret: clientSecret,
         })
-            .then(function (response) {
+            .then(function () {
                 console.log('The data has been sent, we are waiting for the container');
                 alert('The data has been sent, we are waiting for the container');
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+                alert("Error: " + error);
+            });
+    }
+}
+
+export async function phaseThree() {
+    let client = localStorage.getItem('client');
+    
+    if (client) {
+        let clientJSON = JSON.parse(client);
+
+        await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/contracts/add_contract', {
+            amo_id: clientJSON.new_client.amo_id,
+            uuid: clientJSON.uuid,
+            client_name: clientJSON.new_client.client_name,
+        })
+            .then(function () {
+                console.log('The data has been sent, contract added successfully');
+                alert('The data has been sent, contract added successfully');
 
                 localStorage.clear();
             })

@@ -1,9 +1,10 @@
 import styles from './MainPage.module.css';
 import { Button } from '../../components/Button/Button';
 import { Input } from '../../components/Input/Input';
-import { phaseOne, phaseTwo } from '../../helpers/admin.helper';
+import { phaseOne, phaseThree, phaseTwo } from '../../helpers/admin.helper';
 import { useState } from 'react';
 import cn from 'classnames';
+import { PhaseBlock } from '../../components/PhaseBlock/PhaseBlock';
 
 
 export const MainPage = (): JSX.Element => {
@@ -24,29 +25,36 @@ export const MainPage = (): JSX.Element => {
 
     return (
         <div className={styles.wrapper}>
-            <Input type='number' text='amo_id' value={amoId}
-                error={false} onChange={(e) => setAmoId(e.target.value)} />
-            <Input type='text' text='client_name' value={clientName}
-                error={false} onChange={(e) => setClientName(e.target.value)} />
-            <Input type='text' text='client_email' value={clientEmail}
-                error={false} onChange={(e) => setClientEmail(e.target.value)} />
-            <Input type='number' text='client_phone' value={clientPhone}
-                error={false} onChange={(e) => setClientPhone(e.target.value)} />
-            <Input type='text' text='stripe_id' value={stripeId}
-                error={false} onChange={(e) => setStripeId(e.target.value)} />
-            <Button text='Go!' onClick={() => phaseOne(amoId, clientName, clientEmail, clientPhone, stripeId,
-                setIsOpen, setUrl, setPaymentLink)} />
-            <div className={cn(styles.block, {
-                [styles.open]: isOpen,
-            })}>
-                <a href={url} target='_blank'>{url}</a>
-                <a href={paymentLink} target='_blank'>{paymentLink}</a>
-            </div>
-            <Input type='text' text='client_id' value={clientId}
-                error={false} onChange={(e) => setClientId(e.target.value)} />
-            <Input type='text' text='client_secret' value={clientSecret}
-                error={false} onChange={(e) => setClientSecret(e.target.value)} />
-            <Button text='Go!' onClick={() => phaseTwo(clientId, clientSecret)} />
+            <PhaseBlock phase={1}>
+                <Input type='number' text='amo_id' value={amoId}
+                    error={false} onChange={(e) => setAmoId(e.target.value)} />
+                <Input type='text' text='client_name' value={clientName}
+                    error={false} onChange={(e) => setClientName(e.target.value)} />
+                <Input type='text' text='client_email' value={clientEmail}
+                    error={false} onChange={(e) => setClientEmail(e.target.value)} />
+                <Input type='number' text='client_phone' value={clientPhone}
+                    error={false} onChange={(e) => setClientPhone(e.target.value)} />
+                <Input type='text' text='stripe_id' value={stripeId}
+                    error={false} onChange={(e) => setStripeId(e.target.value)} />
+                <Button text='Go!' onClick={() => phaseOne(amoId, clientName, clientEmail, clientPhone, stripeId,
+                    setIsOpen, setUrl, setPaymentLink)} />
+                <div className={cn(styles.block, {
+                    [styles.open]: isOpen,
+                })}>
+                    <a href={url} target='_blank'>{url}</a>
+                    <a href={paymentLink} target='_blank'>{paymentLink}</a>
+                </div>
+            </PhaseBlock>
+            <PhaseBlock phase={2}>
+                <Input type='text' text='client_id' value={clientId}
+                    error={false} onChange={(e) => setClientId(e.target.value)} />
+                <Input type='text' text='client_secret' value={clientSecret}
+                    error={false} onChange={(e) => setClientSecret(e.target.value)} />
+                <Button text='Go!' onClick={() => phaseTwo(clientId, clientSecret)} />
+            </PhaseBlock>
+            <PhaseBlock phase={3}>
+                <Button text='Go!' onClick={() => phaseThree()} />
+            </PhaseBlock>
         </div>
     );
 };

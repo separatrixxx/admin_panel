@@ -1,0 +1,10 @@
+.phaseBlock {
+    height: fit-content;
+    display: grid;
+    gap: 20px;
+}
+
+.title {
+    color: var(--dark);
+    font-weight: 600;
+}

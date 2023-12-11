@@ -4,14 +4,13 @@
 	width: 100%;
 	justify-items: center;
 	gap: 60px;
-	background: var(--primary);
-	grid-template-columns: auto;
+	grid-template-columns: auto auto auto;
 	gap: 10px;
 	padding-top: 20px;
 }
 
 .block {
-	background: var(--white);
+	background: var(--primary);
 	border-radius: 10px;
 	display: none;
 	grid-template-columns: auto;
@@ -21,7 +20,7 @@
 }
 
 .block > a {
-	color: var(--primary);
+	color: var(--white);
 	cursor: pointer;
 	transition-duration: 300ms;
 }

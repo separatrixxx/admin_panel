@@ -1,35 +1,35 @@
 .button {
-    width: 400px;
-	height: 40px;
+    width: 406.6px;
+	height: 51.6px;
 	padding: 5px;
 	padding-left: 20px;
 
 	transition-duration: 300ms;
 
-	color: var(--primary);
-	border: 1px solid var(--white) !important;
+	color: var(--white);
+	border: 1px solid var(--primary) !important;
 	border-radius: 7px;
 	outline: none;
-	background: var(--white);
+	background: var(--primary);
 
 	font-size: 20px;
 	font-weight: 500;
-    margin-top: 10px;
     cursor: pointer;
-	margin-bottom: 20px;
 }
 
 .button:active {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-    transform: scale(1.05);
+    color: var(--primary);
+	background: var(--white);
 }
 
 @media (min-width: 1024px) {
 	.button:hover {
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-		transform: scale(1.05);
+		color: var(--primary);
+		background: var(--white);	
 	}
 }
 
@@ -41,8 +41,7 @@
 
 @media (max-width: 580px) {
 	.button {
-		width: 300px;
-		height: 40px;
+		width: 301.6px;
 		padding-left: 15px;
 
 		font-size: 20px;
@@ -51,6 +50,6 @@
 
 @media (max-width: 400px) {
 	.button {
-		width: 200px;
+		width: 201.6px;
 	}
 }
