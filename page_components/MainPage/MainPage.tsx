@@ -14,8 +14,7 @@ export const MainPage = (): JSX.Element => {
     const [clientName, setClientName] = useState<string>('');
     const [clientEmail, setClientEmail] = useState<string>('');
     const [clientPhone, setClientPhone] = useState<string>('');
-    const [stripeId, setStripeId] = useState<string>('');
-
+    
     const [clientId, setClientId] = useState<string>('');
     const [clientSecret, setClientSecret] = useState<string>('');
 
@@ -34,9 +33,7 @@ export const MainPage = (): JSX.Element => {
                     error={false} onChange={(e) => setClientEmail(e.target.value)} />
                 <Input type='number' text='client_phone' value={clientPhone}
                     error={false} onChange={(e) => setClientPhone(e.target.value)} />
-                <Input type='text' text='stripe_id' value={stripeId}
-                    error={false} onChange={(e) => setStripeId(e.target.value)} />
-                <Button text='Go!' onClick={() => phaseOne(amoId, clientName, clientEmail, clientPhone, stripeId,
+                <Button text='Go!' onClick={() => phaseOne(amoId, clientName, clientEmail, clientPhone,
                     setIsOpen, setUrl, setPaymentLink)} />
                 <div className={cn(styles.block, {
                     [styles.open]: isOpen,

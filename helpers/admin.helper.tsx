@@ -1,14 +1,13 @@
 import axios from "axios";
 
 
-export async function phaseOne(amoId: string, clientName: string, clientEmail: string, clientPhone: string, stripeId: string,
+export async function phaseOne(amoId: string, clientName: string, clientEmail: string, clientPhone: string,
     setIsOpen: (e: any) => void, setUrl: (e: any) => void, setPaymentLink: (e: any) => void) {
     await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client/', {
         amo_id: amoId,
         client_name: clientName,
         client_email: clientEmail,
         client_phone: clientPhone,
-        stripe_id: stripeId,
     })
         .then(function (response) {
             console.log('Client data has been sent to the server, we are waiting for a link');
