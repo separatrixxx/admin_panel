@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 export async function phaseOne(amoId: string, clientName: string, clientEmail: string, clientPhone: string,
-    setIsOpen: (e: any) => void, setUrl: (e: any) => void, setPaymentLink: (e: any) => void) {
+    setIsOpen: (e: any) => void, setUrl: (e: any) => void, setPaymentLink: (e: any) => void, setInstallLink: (e: any) => void) {
     await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client/', {
         amo_id: amoId,
         client_name: clientName,
@@ -16,6 +16,7 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
             setIsOpen(true);
             setUrl(response.data.url);
             setPaymentLink(response.data.payment_link);
+            setInstallLink(response.data.install_link);
 
             localStorage.setItem('client', JSON.stringify(response.data));
         })

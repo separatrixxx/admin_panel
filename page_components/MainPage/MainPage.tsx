@@ -21,6 +21,7 @@ export const MainPage = (): JSX.Element => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [url, setUrl] = useState<string>('');
     const [paymentLink, setPaymentLink] = useState<string>('');
+    const [installLink, setInstallLink] = useState<string>('');
 
     return (
         <div className={styles.wrapper}>
@@ -34,12 +35,13 @@ export const MainPage = (): JSX.Element => {
                 <Input type='number' text='client_phone' value={clientPhone}
                     error={false} onChange={(e) => setClientPhone(e.target.value)} />
                 <Button text='Go!' onClick={() => phaseOne(amoId, clientName, clientEmail, clientPhone,
-                    setIsOpen, setUrl, setPaymentLink)} />
+                    setIsOpen, setUrl, setPaymentLink, setInstallLink)} />
                 <div className={cn(styles.block, {
                     [styles.open]: isOpen,
                 })}>
                     <a href={url} target='_blank'>{url}</a>
                     <a href={paymentLink} target='_blank'>{paymentLink}</a>
+                    <a href={installLink} target='_blank'>{installLink}</a>
                 </div>
             </PhaseBlock>
             <PhaseBlock phase={2}>
