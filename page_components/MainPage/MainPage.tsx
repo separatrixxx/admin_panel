@@ -3,8 +3,8 @@ import { Button } from '../../components/Button/Button';
 import { Input } from '../../components/Input/Input';
 import { phaseOne, phaseThree, phaseTwo } from '../../helpers/admin.helper';
 import { useState } from 'react';
-import cn from 'classnames';
 import { PhaseBlock } from '../../components/PhaseBlock/PhaseBlock';
+import cn from 'classnames';
 
 
 export const MainPage = (): JSX.Element => {
@@ -22,6 +22,7 @@ export const MainPage = (): JSX.Element => {
     const [url, setUrl] = useState<string>('');
     const [paymentLink, setPaymentLink] = useState<string>('');
     const [installLink, setInstallLink] = useState<string>('');
+
 
     return (
         <div className={styles.wrapper}>
@@ -41,7 +42,9 @@ export const MainPage = (): JSX.Element => {
                 })}>
                     <a href={url} target='_blank'>{url}</a>
                     <a href={paymentLink} target='_blank'>{paymentLink}</a>
-                    <a href={installLink} target='_blank'>{installLink}</a>
+                    <a href={installLink.replace('XXX', clientId)} target='_blank'>
+                        {installLink.replace('XXX', clientId)}
+                    </a>
                 </div>
             </PhaseBlock>
             <PhaseBlock phase={2}>
