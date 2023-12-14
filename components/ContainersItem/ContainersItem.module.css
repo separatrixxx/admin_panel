@@ -1,0 +1,44 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 20px;
+    justify-items: center;
+}
+
+.containerDiv {
+    display: grid;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    transition-duration: 300ms;
+
+	color: var(--white);
+	border: 1px solid var(--primary) !important;
+	border-radius: 7px;
+	background: var(--primary);
+}
+
+.containerDiv:active {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    color: var(--primary);
+	background: var(--white);
+}
+
+.containerButtons {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+}
+
+@media (min-width: 1024px) {
+	.containerDiv:hover {
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+		color: var(--primary);
+		background: var(--white);	
+	}
+}

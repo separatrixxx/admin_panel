@@ -1,0 +1,14 @@
+.th,
+.td {
+	padding: 5px 20px;
+	text-align: left;
+}
+
+.th {
+	color: var(--white);
+	background: var(--primary);
+}
+
+.td {
+	border: 1px solid var(--dark);
+}

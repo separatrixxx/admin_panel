@@ -1,4 +1,6 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { Container } from "../interfaces/container.interface";
+import { Statistics } from "../interfaces/statistics.interface";
 
 
 export async function phaseOne(amoId: string, clientName: string, clientEmail: string, clientPhone: string,
@@ -72,4 +74,92 @@ export async function phaseThree() {
                 alert("Error: " + error);
             });
     }
+}
+
+export async function checkPayment(setIsPayment: (e: any) => void) {
+    let client = localStorage.getItem('client');
+    
+    if (client) {
+        let clientJSON = JSON.parse(client);
+
+        const { data: response }: AxiosResponse<boolean> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + 
+            '/clients/paid_or_not?uuid=' + clientJSON.uuid);
+
+        if (response) {
+            setIsPayment(true);
+            alert('Payment confirmed');
+        } else {
+            alert('Payment not confirmed');
+        }
+    }
+}
+
+export async function getContainers(setContainers: (e: any) => void) {
+	const { data: response }: AxiosResponse<Container[]> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + '/containers/get_containers');
+    console.log(response)
+    setContainers(response);
+}
+
+export async function upContainer(value: string) {
+	await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/up_container', {
+        uuid: value,
+    })
+        .then(function () {
+            console.log('Container upped successfully');
+            alert('Container upped successfully');
+        })
+        .catch(function (error) {
+            console.log("Error: " + error);
+            alert("Error: " + error);
+        });
+}
+
+export async function downContainer(value: string) {
+	await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/stop_container', {
+        uuid: value,
+    })
+        .then(function () {
+            console.log('Container stopped successfully');
+            alert('Container stopped successfully');
+        })
+        .catch(function (error) {
+            console.log("Error: " + error);
+            alert("Error: " + error);
+        });
+}
+
+export async function deleteContainer(value: string, setContainers: (e: any) => void) {
+	await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/delete_container', {
+        uuid: value,
+    })
+        .then(function () {
+            console.log('Container deleted successfully');
+            alert('Container deleted successfully');
+
+            getContainers(setContainers);
+        })
+        .catch(function (error) {
+            console.log("Error: " + error);
+            alert("Error: " + error);
+        });
+}
+
+export async function getStatistics(setStatistics: (e: any) => void) {
+	const { data: response }: AxiosResponse<Statistics[]> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + '/containers/showAllStates');
+    
+    response.sort((a, b) => {
+        if (a.status === "Active" && b.status !== "Active") {
+          return -1;
+        } else if (a.status !== "Active" && b.status === "Active") {
+          return 1;
+        } else if (a.status === "Stopped" && b.status === "Deleted") {
+          return -1;
+        } else if (a.status === "Deleted" && b.status === "Stopped") {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
+    setStatistics(response);
 }

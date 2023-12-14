@@ -1,0 +1,6 @@
+.containersDiv {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 20px;
+    justify-items: center;
+}
