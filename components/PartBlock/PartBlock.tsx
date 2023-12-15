@@ -60,7 +60,7 @@ export const PartBlock = ({ part, setIsPayment }: PartBlockProps): JSX.Element =
                     <Button text='Go!' onClick={() => phaseThree()} />
                 </PhaseBlock>
                 <div className={cn(styles.block, {
-                        [styles.open]: !isOpen,
+                        [styles.open]: isOpen,
                     })}>
                         <a href={url} target='_blank'>{url}</a>
                         <a href={paymentLink} target='_blank'>{paymentLink}</a>
