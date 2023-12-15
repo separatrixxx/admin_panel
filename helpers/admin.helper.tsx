@@ -28,8 +28,13 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
         });
 }
 
-export async function phaseTwo(clientId: string, clientSecret: string) {
+export async function phaseTwo(clientId: string, clientSecret: string, setIsLoading: (e: any) => void) {
     let client = localStorage.getItem('client');
+
+    setIsLoading(true);
+
+    console.log('The data has been sent, we are waiting for the container');
+    alert('The data has been sent, we are waiting for the container');
     
     if (client) {
         let clientJSON = JSON.parse(client);
@@ -42,12 +47,16 @@ export async function phaseTwo(clientId: string, clientSecret: string) {
             client_secret: clientSecret,
         })
             .then(function () {
-                console.log('The data has been sent, we are waiting for the container');
-                alert('The data has been sent, we are waiting for the container');
+                console.log('Container added successfully');
+                alert('Container added successfully');
+
+                setIsLoading(false);
             })
             .catch(function (error) {
                 console.log("Error: " + error);
                 alert("Error: " + error);
+
+                setIsLoading(false);
             });
     }
 }

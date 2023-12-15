@@ -10,6 +10,7 @@ import { Container } from '../../interfaces/container.interface';
 import cn from 'classnames';
 import { StatisticsDiv } from '../StatisticsDiv/StatisticsDiv';
 import { Statistics } from '../../interfaces/statistics.interface';
+import { LoadingDots } from '../LoadingDots/LoadingDots';
 
 
 export const PartBlock = ({ part, setIsPayment }: PartBlockProps): JSX.Element => {
@@ -27,7 +28,9 @@ export const PartBlock = ({ part, setIsPayment }: PartBlockProps): JSX.Element =
     const [installLink, setInstallLink] = useState<string>('');
 
     const [containers, setContainers] = useState<Container[]>([]);	
-    const [statistics, setStatistics] = useState<Statistics[]>([]);	
+    const [statistics, setStatistics] = useState<Statistics[]>([]);
+
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	useEffect(() => {
 		getContainers(setContainers);
@@ -54,7 +57,14 @@ export const PartBlock = ({ part, setIsPayment }: PartBlockProps): JSX.Element =
                         error={false} onChange={(e) => setClientId(e.target.value)} />
                     <Input type='text' text='client_secret' value={clientSecret}
                         error={false} onChange={(e) => setClientSecret(e.target.value)} />
-                    <Button text='Go!' onClick={() => phaseTwo(clientId, clientSecret)} />
+                    {
+                        !isLoading ?
+                            <Button text='Go!' onClick={() => phaseTwo(clientId, clientSecret, setIsLoading)} />
+                        :
+                            <Button onClick={() => {}}>
+                                <LoadingDots />
+                            </Button>
+                    }
                 </PhaseBlock>
                 <PhaseBlock phase={3}>
                     <Button text='Go!' onClick={() => phaseThree()} />
