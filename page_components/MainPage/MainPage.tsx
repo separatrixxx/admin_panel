@@ -6,7 +6,6 @@ import { PartBlock } from '../../components/PartBlock/PartBlock';
 
 export const MainPage = (): JSX.Element => {
     const [part, setPart] = useState<'one' | 'two' | 'three' | 'none'>('none');
-    const [isPayment, setIsPayment] = useState<boolean>(false);
 
     return (
         <div className={styles.wrapper}>
@@ -19,11 +18,7 @@ export const MainPage = (): JSX.Element => {
             }} />
             <Button text='Part 2' onClick={() => {
                 if (part !== 'two') {
-                    if (isPayment) {
-                        setPart('two');
-                    } else {
-                        alert('Confirm payment first');
-                    }
+                    setPart('two');
                 } else {
                     setPart('none');
                 }
@@ -35,7 +30,7 @@ export const MainPage = (): JSX.Element => {
                     setPart('none');
                 }
             }} />
-            <PartBlock part={part} setIsPayment={setIsPayment} />
+            <PartBlock part={part} />
         </div>
     );
 };

@@ -13,7 +13,7 @@ import { Statistics } from '../../interfaces/statistics.interface';
 import { LoadingDots } from '../LoadingDots/LoadingDots';
 
 
-export const PartBlock = ({ part, setIsPayment }: PartBlockProps): JSX.Element => {
+export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
     const [amoId, setAmoId] = useState<string>('');
     const [clientName, setClientName] = useState<string>('');
     const [clientEmail, setClientEmail] = useState<string>('');
@@ -36,6 +36,8 @@ export const PartBlock = ({ part, setIsPayment }: PartBlockProps): JSX.Element =
 		getContainers(setContainers);
         getStatistics(setStatistics);
 	}, []);
+
+    const [isPayment, setIsPayment] = useState<boolean>(false);
     
 	if (part === 'one') {
         return (
@@ -59,7 +61,7 @@ export const PartBlock = ({ part, setIsPayment }: PartBlockProps): JSX.Element =
                         error={false} onChange={(e) => setClientSecret(e.target.value)} />
                     {
                         !isLoading ?
-                            <Button text='Go!' onClick={() => phaseTwo(clientId, clientSecret, setIsLoading)} />
+                            <Button text='Go!' onClick={() => phaseTwo(clientId, clientSecret, isPayment, setIsLoading)} />
                         :
                             <Button onClick={() => {}}>
                                 <LoadingDots />
@@ -70,7 +72,7 @@ export const PartBlock = ({ part, setIsPayment }: PartBlockProps): JSX.Element =
                     <Button text='Go!' onClick={() => phaseThree()} />
                 </PhaseBlock>
                 <div className={cn(styles.block, {
-                        [styles.open]: !isOpen,
+                        [styles.open]: isOpen,
                     })}>
                         <a href={url} target='_blank'>{url}</a>
                         <a href={paymentLink} target='_blank'>{paymentLink}</a>

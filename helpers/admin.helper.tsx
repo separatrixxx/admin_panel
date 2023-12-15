@@ -28,36 +28,40 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
         });
 }
 
-export async function phaseTwo(clientId: string, clientSecret: string, setIsLoading: (e: any) => void) {
-    let client = localStorage.getItem('client');
+export async function phaseTwo(clientId: string, clientSecret: string, isPayment: boolean, setIsLoading: (e: any) => void) {
+    if (isPayment) {
+        let client = localStorage.getItem('client');
 
-    setIsLoading(true);
+        setIsLoading(true);
 
-    console.log('The data has been sent, we are waiting for the container');
-    alert('The data has been sent, we are waiting for the container');
-    
-    if (client) {
-        let clientJSON = JSON.parse(client);
+        console.log('The data has been sent, we are waiting for the container');
+        alert('The data has been sent, we are waiting for the container');
+        
+        if (client) {
+            let clientJSON = JSON.parse(client);
 
-        await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/add_container?timeout=12000', {
-            amo_id: clientJSON.new_client.amo_id,
-            client_name: clientJSON.new_client.client_name,
-            uuid: clientJSON.uuid,
-            client_id: clientId,
-            client_secret: clientSecret,
-        })
-            .then(function () {
-                console.log('Container added successfully');
-                alert('Container added successfully');
-
-                setIsLoading(false);
+            await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/add_container?timeout=12000', {
+                amo_id: clientJSON.new_client.amo_id,
+                client_name: clientJSON.new_client.client_name,
+                uuid: clientJSON.uuid,
+                client_id: clientId,
+                client_secret: clientSecret,
             })
-            .catch(function (error) {
-                console.log("Error: " + error);
-                alert("Error: " + error);
+                .then(function () {
+                    console.log('Container added successfully');
+                    alert('Container added successfully');
 
-                setIsLoading(false);
-            });
+                    setIsLoading(false);
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                    alert("Error: " + error);
+
+                    setIsLoading(false);
+                });
+        }
+    } else {
+        alert('Confirm payment first');
     }
 }
 
