@@ -16,9 +16,9 @@ export const ContainersItem = ({ value, label, setContainers }: ContainersItemPr
             {
                 isOpen ? 
                     <div className={styles.containerButtons}>
-                        <Button text='UP' onClick={() => upContainer(value)} />
-                        <Button text='DOWN' onClick={() => downContainer(value)} />
-                        <Button text='DELETE' onClick={() => deleteContainer(value, setContainers)} />
+                        <Button text='UP' isActive={true} onClick={() => upContainer(value)} />
+                        <Button text='DOWN' isActive={true} onClick={() => downContainer(value)} />
+                        <Button text='DELETE' isActive={true} onClick={() => deleteContainer(value, setContainers)} />
                     </div>
                 :
                     <></>
