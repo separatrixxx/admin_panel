@@ -9,21 +9,21 @@ export const MainPage = (): JSX.Element => {
 
     return (
         <div className={styles.wrapper}>
-            <Button text='Part 1' onClick={() => {
+            <Button text='Part 1' isActive={true} onClick={() => {
                 if (part !== 'one') { 
                     setPart('one');
                 } else {
                     setPart('none');
                 }
             }} />
-            <Button text='Part 2' onClick={() => {
+            <Button text='Part 2' isActive={true} onClick={() => {
                 if (part !== 'two') {
                     setPart('two');
                 } else {
                     setPart('none');
                 }
             }} />
-            <Button text='Statistics' onClick={() => {
+            <Button text='Statistics' isActive={true} onClick={() => {
                 if (part !== 'three') { 
                     setPart('three');
                 } else {

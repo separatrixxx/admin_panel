@@ -4,8 +4,8 @@
 	width: 100%;
 	justify-items: center;
 	grid-template-columns: auto auto auto;
-	gap: 10px;
-	margin-top: 30px;
+	gap: 20px;
+	margin: 30px 0;
 }
 
 .partTwoDiv {
@@ -38,8 +38,31 @@
 	display: grid;
 }
 
+.link {
+	width: fit-content;
+	color: var(--primary);
+	cursor: pointer;
+	transition-duration: 300ms;
+}
+
+.linkText {
+	color: var(--primary);
+}
+
+.block > a:active,
+.link:active {
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	
+	filter: brightness(0.9);
+}
+
+.twoPhases {
+	display: grid;
+}
+
 @media (min-width: 1024px) {
-	.block > a:hover {
+	.block > a:hover,
+	.link:hover {
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 		filter: brightness(0.9);

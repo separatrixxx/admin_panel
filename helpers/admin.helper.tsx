@@ -4,7 +4,8 @@ import { Statistics } from "../interfaces/statistics.interface";
 
 
 export async function phaseOne(amoId: string, clientName: string, clientEmail: string, clientPhone: string,
-    setIsOpen: (e: any) => void, setUrl: (e: any) => void, setPaymentLink: (e: any) => void, setInstallLink: (e: any) => void) {
+    setIsOpen: (e: any) => void, setUrl: (e: any) => void, setPaymentLink: (e: any) => void, setInstallLink: (e: any) => void,
+    setIsActive1: (e: any) => void, setIsActive2: (e: any) => void) {
     await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client/', {
         amo_id: amoId,
         client_name: clientName,
@@ -20,6 +21,9 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
             setPaymentLink(response.data.payment_link);
             setInstallLink(response.data.install_link);
 
+            setIsActive1(false);
+            setIsActive2(true);
+
             localStorage.setItem('client', JSON.stringify(response.data));
         })
         .catch(function (error) {
@@ -28,42 +32,33 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
         });
 }
 
-export async function phaseTwo(clientId: string, clientSecret: string, isPayment: boolean, setIsLoading: (e: any) => void) {
-    if (isPayment) {
-        let client = localStorage.getItem('client');
-
-        setIsLoading(true);
-
-        console.log('The data has been sent, we are waiting for the container');
-        alert('The data has been sent, we are waiting for the container');
+// export async function phaseTwo(clientId: string, clientSecret: string, isPayment: boolean) {
+//     if (isPayment) {
+//         let client = localStorage.getItem('client');
         
-        if (client) {
-            let clientJSON = JSON.parse(client);
+//         if (client) {
+//             let clientJSON = JSON.parse(client);
 
-            await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/add_container?timeout=12000', {
-                amo_id: clientJSON.new_client.amo_id,
-                client_name: clientJSON.new_client.client_name,
-                uuid: clientJSON.uuid,
-                client_id: clientId,
-                client_secret: clientSecret,
-            })
-                .then(function () {
-                    console.log('Container added successfully');
-                    alert('Container added successfully');
-
-                    setIsLoading(false);
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                    alert("Error: " + error);
-
-                    setIsLoading(false);
-                });
-        }
-    } else {
-        alert('Confirm payment first');
-    }
-}
+//             await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/add_container?timeout=12000', {
+//                 amo_id: clientJSON.new_client.amo_id,
+//                 client_name: clientJSON.new_client.client_name,
+//                 uuid: clientJSON.uuid,
+//                 client_id: clientId,
+//                 client_secret: clientSecret,
+//             })
+//                 .then(function () {
+//                     console.log('Payment confirmed');
+//                     alert('Payment confirmed');
+//                 })
+//                 .catch(function (error) {
+//                     console.log("Error: " + error);
+//                     alert("Error: " + error);
+//                 });
+//         }
+//     } else {
+//         alert('Confirm payment first');
+//     }
+// }
 
 export async function phaseThree() {
     let client = localStorage.getItem('client');
@@ -89,7 +84,7 @@ export async function phaseThree() {
     }
 }
 
-export async function checkPayment(setIsPayment: (e: any) => void) {
+export async function checkPayment(setIsPayment: (e: any) => void, setIsActive2: (e: any) => void, setIsActive3: (e: any) => void) {
     let client = localStorage.getItem('client');
     
     if (client) {
@@ -101,6 +96,9 @@ export async function checkPayment(setIsPayment: (e: any) => void) {
         if (response) {
             setIsPayment(true);
             alert('Payment confirmed');
+
+            setIsActive2(false);
+            setIsActive3(true);
         } else {
             alert('Payment not confirmed');
         }
@@ -109,7 +107,7 @@ export async function checkPayment(setIsPayment: (e: any) => void) {
 
 export async function getContainers(setContainers: (e: any) => void) {
 	const { data: response }: AxiosResponse<Container[]> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + '/containers/get_containers');
-    console.log(response)
+
     setContainers(response);
 }
 

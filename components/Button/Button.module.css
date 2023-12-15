@@ -24,6 +24,13 @@
 	background: var(--white);
 }
 
+.disabled {
+	cursor: auto;
+	color: var(--white) !important;
+	background: var(--primary) !important;
+	filter: brightness(0.8);
+}
+
 @media (min-width: 1024px) {
 	.button:hover {
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
