@@ -1,8 +1,8 @@
 export function amoButton() {   
     let name = 'Integration name';
     let description = 'Integration description';
-    let redirect_uri = 'https://d78e-91-151-136-231.ngrok-free.app/auth/callback';
-    let secrets_uri = 'https://d78e-91-151-136-231.ngrok-free.app/auth/secrets';
+    let redirect_uri = 'https://telegram.gemuani.com/auth/callback';
+    let secrets_uri = 'https://telegram.gemuani.com/auth/secrets';
     let mode = 'post_message';
     let state = 'state';
     let logo = 'https://example.com/amocrm_logo.png';
