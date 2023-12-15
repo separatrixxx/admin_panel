@@ -82,14 +82,13 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
                 </PhaseBlock>
                 <PhaseBlock phase={3}>
                     <Button id='amocrm_oauth' text='Connect amo'  isActive={isActive3} onClick={() => {
-                        // if (isActive3) {
-                        //     if (isPayment) {
-                        //         amoButton();
-                        //     } else {
-                        //         alert('Confirm payment first');
-                        //     }
-                        // }
-                        amoButton();
+                        if (isActive3) {
+                            if (isPayment) {
+                                amoButton();
+                            } else {
+                                alert('Confirm payment first');
+                            }
+                        }
                     }} />
                 </PhaseBlock>
                 {/* <div className={cn(styles.block, {
