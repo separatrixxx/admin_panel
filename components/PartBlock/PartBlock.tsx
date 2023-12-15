@@ -41,7 +41,6 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
     const [isActive1, setIsActive1] = useState<boolean>(true);
     const [isActive2, setIsActive2] = useState<boolean>(false);
     const [isActive3, setIsActive3] = useState<boolean>(false);
-    const [isActive4, setIsActive4] = useState<boolean>(false);
     
 	if (part === 'one') {
         return (
@@ -81,34 +80,26 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
                         }
                     }} />
                 </PhaseBlock>
-                <div className={styles.twoPhases}>
-                    <PhaseBlock phase={3}>
-                        <Button id='amocrm_oauth' text='Connect amo'  isActive={isActive3} onClick={() => {
-                            if (isActive3) {
-                                if (isPayment) {
-                                    amoButton();
-                                } else {
-                                    alert('Confirm payment first');
-                                }
-                            }
-                        }} />
-                    </PhaseBlock>
-                    <PhaseBlock phase={4}>
-                        <Button text='Go!'  isActive={isActive4} onClick={() => {
-                            if (isActive4) {
-                                phaseThree()
-                            }
-                        }} />
-                    </PhaseBlock>
-                </div>
-                <div className={cn(styles.block, {
+                <PhaseBlock phase={3}>
+                    <Button id='amocrm_oauth' text='Connect amo'  isActive={isActive3} onClick={() => {
+                        // if (isActive3) {
+                        //     if (isPayment) {
+                        //         amoButton();
+                        //     } else {
+                        //         alert('Confirm payment first');
+                        //     }
+                        // }
+                        amoButton();
+                    }} />
+                </PhaseBlock>
+                {/* <div className={cn(styles.block, {
                         [styles.open]: isOpen,
                     })}>
                         <a href={url} target='_blank'>{url}</a>
                         <a href={installLink.replace('XXX', clientId)} target='_blank'>
                             {installLink.replace('XXX', clientId)}
                         </a>
-                </div>
+                </div> */}
             </div>
         );
     } else if (part === 'two') {

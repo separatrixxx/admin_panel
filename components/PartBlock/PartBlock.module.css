@@ -56,10 +56,6 @@
 	filter: brightness(0.9);
 }
 
-.twoPhases {
-	display: grid;
-}
-
 @media (min-width: 1024px) {
 	.block > a:hover,
 	.link:hover {

@@ -3,9 +3,8 @@ export function amoButton() {
     let description = 'Integration description';
     let redirect_uri = 'https://d78e-91-151-136-231.ngrok-free.app/auth/callback';
     let secrets_uri = 'https://d78e-91-151-136-231.ngrok-free.app/auth/secrets';
-    let mode = 'popup';
-    let state = Math.random().toString(36).substring(2);
-    let client_id = 'xxxx';
+    let mode = 'post_message';
+    let state = 'state';
     let logo = 'https://example.com/amocrm_logo.png';
     let scopes = 'crm,notifications';
     let title = 'amoCRM';
@@ -32,7 +31,7 @@ export function amoButton() {
     color = colors.default,
     className = 'amocrm-oauth';
   
-    if ((!client_id) && !(name && description && redirect_uri && secrets_uri && scopes)) {
+    if (!(name && description && redirect_uri && secrets_uri && scopes)) {
       console.error('No client_id or client_secret or script tag or metadata');
       return;
     }
@@ -70,7 +69,6 @@ export function amoButton() {
     }
   
     button.className = className;
-    button.dataset.client_id = client_id;
     button.innerHTML = button_html.join('');
   
     button.style = [
@@ -95,9 +93,7 @@ export function amoButton() {
       '&origin=', origin,
     ];
 
-    if (client_id) {
-      url_array.push('&client_id=', client_id);
-    } else if (name && description && redirect_uri && secrets_uri && scopes) {
+    if (name && description && redirect_uri && secrets_uri && scopes) {
       url_array.push('&name=', name);
       url_array.push('&description=', description);
       url_array.push('&redirect_uri=', redirect_uri);
@@ -111,7 +107,7 @@ export function amoButton() {
 
     centerAuthWindow(
       url_array.join(''),
-      'РџСЂРµРґРѕСЃС‚Р°РІРёС‚СЊ РґРѕСЃС‚СѓРї РґР»СЏ РёРЅС‚РµРіСЂР°С†РёРё'
+      'amoCRM'
     );
   };
 
@@ -131,7 +127,7 @@ export function amoButton() {
 
   let left = ((width / 2) - (w / 2)) + dual_screen_left;
   let top = ((height / 2) - (h / 2)) + dual_screen_top;
-
+  
   let new_window = window.open(url, title, 'scrollbars, status, resizable, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
   new_window?.focus();
