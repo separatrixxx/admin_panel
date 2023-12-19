@@ -1,8 +1,8 @@
 export function amoButton() {   
     let name = 'Phone validator';
     let description = 'This is Phone validator extension for KOMMO (AMO) CRM';
-    let redirect_uri = 'https://telegram.gemuani.com/auth/callback';
-    let secrets_uri = 'https://telegram.gemuani.com/auth/secrets';
+    let redirect_uri = 'https://admin.7club.com.br/auth/callback';
+    let secrets_uri = 'https://admin.7club.com.br/auth/secrets';
     let mode = 'post_message';
     let state = 'state';
     let logo = 'https://example.com/amocrm_logo.png';
