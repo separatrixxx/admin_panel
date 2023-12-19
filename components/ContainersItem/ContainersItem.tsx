@@ -3,9 +3,13 @@ import styles from './ContainersItem.module.css';
 import { useState } from 'react';
 import { Button } from '../Button/Button';
 import { deleteContainer, downContainer, upContainer } from '../../helpers/admin.helper';
+import { useRouter } from 'next/router';
+import { setLocale } from 'helpers/locale.helper';
 
 
 export const ContainersItem = ({ value, label, setContainers }: ContainersItemProps): JSX.Element => {
+    const router = useRouter();
+    
     const [isOpen, setIsOpen] = useState<boolean>(false);
     
 	return (
@@ -16,9 +20,9 @@ export const ContainersItem = ({ value, label, setContainers }: ContainersItemPr
             {
                 isOpen ? 
                     <div className={styles.containerButtons}>
-                        <Button text='UP' isActive={true} onClick={() => upContainer(value)} />
-                        <Button text='DOWN' isActive={true} onClick={() => downContainer(value)} />
-                        <Button text='DELETE' isActive={true} onClick={() => deleteContainer(value, setContainers)} />
+                        <Button text={setLocale(router.locale).up} isActive={true} onClick={() => upContainer(value, router)} />
+                        <Button text={setLocale(router.locale).down} isActive={true} onClick={() => downContainer(value, router)} />
+                        <Button text={setLocale(router.locale).delete} isActive={true} onClick={() => deleteContainer(value, setContainers, router)} />
                     </div>
                 :
                     <></>

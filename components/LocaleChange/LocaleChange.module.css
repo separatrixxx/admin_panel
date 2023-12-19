@@ -1,0 +1,23 @@
+.localeChange {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    color: var(--white);
+    cursor: pointer;
+    transition-duration: 300ms;
+}
+
+.localeChange:active {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    filter: brightness(0.9);
+}
+
+@media (min-width: 1024px) {
+	.localeChange:hover {
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+		filter: brightness(0.9);
+	}
+}

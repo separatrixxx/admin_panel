@@ -1,4 +1,6 @@
-export function amoButton() {   
+import { setLocale } from "./locale.helper";
+
+export function amoButton(router: any) {   
     let name = 'Phone validator';
     let description = 'This is Phone validator extension for KOMMO (AMO) CRM';
     let redirect_uri = 'https://admin.7club.com.br/auth/callback';
@@ -32,7 +34,7 @@ export function amoButton() {
     className = 'amocrm-oauth';
   
     if (!(name && description && redirect_uri && secrets_uri && scopes)) {
-      console.error('No client_id or client_secret or script tag or metadata');
+      console.error(setLocale(router.locale).amo_button_error);
       return;
     }
   

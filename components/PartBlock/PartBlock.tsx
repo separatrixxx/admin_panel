@@ -4,17 +4,21 @@ import { PhaseBlock } from '../PhaseBlock/PhaseBlock';
 import { Input } from '../Input/Input';
 import { Button } from '../Button/Button';
 import { useEffect, useState } from 'react';
-import { checkPayment, getContainers, getStatistics, phaseOne, phaseThree } from '../../helpers/admin.helper';
+import { checkPayment, getContainers, getStatistics, phaseOne } from '../../helpers/admin.helper';
 import { ContainersList } from '../ContainersList/ContainersList';
 import { Container } from '../../interfaces/container.interface';
 import { StatisticsDiv } from '../StatisticsDiv/StatisticsDiv';
 import { Statistics } from '../../interfaces/statistics.interface';
 import { Htag } from '../Htag/Htag';
 import { amoButton } from '../../helpers/amo.helper';
+import { useRouter } from 'next/router';
+import { setLocale } from 'helpers/locale.helper';
 import cn from 'classnames';
 
 
 export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
+    const router = useRouter();
+    
     const [amoId, setAmoId] = useState<string>('');
     const [clientName, setClientName] = useState<string>('');
     const [clientEmail, setClientEmail] = useState<string>('');
@@ -33,7 +37,7 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
 
 	useEffect(() => {
 		getContainers(setContainers);
-        getStatistics(setStatistics);
+        getStatistics(setStatistics, router);
 	}, []);
 
     const [isPayment, setIsPayment] = useState<boolean>(false);
@@ -46,18 +50,18 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
         return (
             <div className={styles.wrapper}>
                 <PhaseBlock phase={1}>
-                    <Input type='number' text='amo_id' value={amoId}
+                    <Input type='number' text={setLocale(router.locale).amo_id} value={amoId}
                         error={false} onChange={(e) => setAmoId(e.target.value)} />
-                    <Input type='text' text='client_name' value={clientName}
+                    <Input type='text' text={setLocale(router.locale).client_name} value={clientName}
                         error={false} onChange={(e) => setClientName(e.target.value)} />
-                    <Input type='text' text='client_email' value={clientEmail}
+                    <Input type='text' text={setLocale(router.locale).client_email} value={clientEmail}
                         error={false} onChange={(e) => setClientEmail(e.target.value)} />
-                    <Input type='number' text='client_phone' value={clientPhone}
+                    <Input type='number' text={setLocale(router.locale).client_phone} value={clientPhone}
                         error={false} onChange={(e) => setClientPhone(e.target.value)} />
-                    <Button text='Go!' isActive={isActive1} onClick={() => {
+                    <Button text={setLocale(router.locale).go + '!'} isActive={isActive1} onClick={() => {
                         if (isActive1) {
-                            phaseOne(amoId, clientName, clientEmail, clientPhone,
-                                setIsOpen, setUrl, setPaymentLink, setInstallLink, setIsActive1, setIsActive2)
+                            phaseOne(amoId, clientName, clientEmail, clientPhone, setIsOpen, setUrl, setPaymentLink, 
+                                setInstallLink, setIsActive1, setIsActive2, router)
                         }
                     }} />
                 </PhaseBlock>
@@ -71,22 +75,22 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
                             </a>
                         :
                             <Htag tag='m' className={styles.linkText}>
-                                A payment link will appear here
+                                {setLocale(router.locale).payment_link_appear_here}
                             </Htag>
                     }
-                    <Button  isActive={isActive2} text='Check Payment' onClick={() => {
+                    <Button  isActive={isActive2} text={setLocale(router.locale).check_payment} onClick={() => {
                         if (isActive2) {
-                            checkPayment(setIsPayment, setIsActive2, setIsActive3);
+                            checkPayment(setIsPayment, setIsActive2, setIsActive3, router);
                         }
                     }} />
                 </PhaseBlock>
                 <PhaseBlock phase={3}>
-                    <Button id='amocrm_oauth' text='Connect amo'  isActive={isActive3} onClick={() => {
+                    <Button id='amocrm_oauth' text={setLocale(router.locale).connect_amo}  isActive={isActive3} onClick={() => {
                         if (isActive3) {
                             if (isPayment) {
-                                amoButton();
+                                amoButton(router);
                             } else {
-                                alert('Confirm payment first');
+                                alert(setLocale(router.locale).confirm_payment_first);
                             }
                         }
                     }} />

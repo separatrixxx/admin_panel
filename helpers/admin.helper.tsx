@@ -1,11 +1,12 @@
 import axios, { AxiosResponse } from "axios";
 import { Container } from "../interfaces/container.interface";
 import { Statistics } from "../interfaces/statistics.interface";
+import { setLocale } from "./locale.helper";
 
 
 export async function phaseOne(amoId: string, clientName: string, clientEmail: string, clientPhone: string,
     setIsOpen: (e: any) => void, setUrl: (e: any) => void, setPaymentLink: (e: any) => void, setInstallLink: (e: any) => void,
-    setIsActive1: (e: any) => void, setIsActive2: (e: any) => void) {
+    setIsActive1: (e: any) => void, setIsActive2: (e: any) => void, router: any) {
     await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client/', {
         amo_id: amoId,
         client_name: clientName,
@@ -13,8 +14,8 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
         client_phone: clientPhone,
     })
         .then(function (response) {
-            console.log('Client data has been sent to the server, we are waiting for a link');
-            alert('Client data has been sent to the server, we are waiting for a link');
+            console.log(setLocale(router.locale).phase_one_response);
+            alert(setLocale(router.locale).phase_one_response);
 
             setIsOpen(true);
             setUrl(response.data.url);
@@ -27,64 +28,13 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
             localStorage.setItem('client', JSON.stringify(response.data));
         })
         .catch(function (error) {
-            console.log("Error: " + error);
-            alert("Error: " + error);
+            console.log(setLocale(router.locale).error + ': ' + error);
+            alert(setLocale(router.locale).error + ': ' + error);
         });
 }
 
-// export async function phaseTwo(clientId: string, clientSecret: string, isPayment: boolean) {
-//     if (isPayment) {
-//         let client = localStorage.getItem('client');
-        
-//         if (client) {
-//             let clientJSON = JSON.parse(client);
-
-//             await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/add_container?timeout=12000', {
-//                 amo_id: clientJSON.new_client.amo_id,
-//                 client_name: clientJSON.new_client.client_name,
-//                 uuid: clientJSON.uuid,
-//                 client_id: clientId,
-//                 client_secret: clientSecret,
-//             })
-//                 .then(function () {
-//                     console.log('Payment confirmed');
-//                     alert('Payment confirmed');
-//                 })
-//                 .catch(function (error) {
-//                     console.log("Error: " + error);
-//                     alert("Error: " + error);
-//                 });
-//         }
-//     } else {
-//         alert('Confirm payment first');
-//     }
-// }
-
-export async function phaseThree() {
-    let client = localStorage.getItem('client');
-    
-    if (client) {
-        let clientJSON = JSON.parse(client);
-
-        await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/contracts/add_contract', {
-            amo_id: clientJSON.new_client.amo_id,
-            uuid: clientJSON.uuid,
-            client_name: clientJSON.new_client.client_name,
-        })
-            .then(function () {
-                console.log('The data has been sent, contract added successfully');
-                alert('The data has been sent, contract added successfully');
-
-                localStorage.clear();
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-                alert("Error: " + error);
-            });
-    }
-}
-
-export async function checkPayment(setIsPayment: (e: any) => void, setIsActive2: (e: any) => void, setIsActive3: (e: any) => void) {
+export async function checkPayment(setIsPayment: (e: any) => void, setIsActive2: (e: any) => void, setIsActive3: (e: any) => void,
+    router: any) {
     let client = localStorage.getItem('client');
     
     if (client) {
@@ -95,12 +45,12 @@ export async function checkPayment(setIsPayment: (e: any) => void, setIsActive2:
 
         if (response) {
             setIsPayment(true);
-            alert('Payment confirmed');
+            alert(setLocale(router.locale).payment_confirmed);
 
             setIsActive2(false);
             setIsActive3(true);
         } else {
-            alert('Payment not confirmed');
+            alert(setLocale(router.locale).payment_not_confirmed);
         }
     }
 }
@@ -111,51 +61,51 @@ export async function getContainers(setContainers: (e: any) => void) {
     setContainers(response);
 }
 
-export async function upContainer(value: string) {
+export async function upContainer(value: string, router: any) {
 	await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/up_container', {
         uuid: value,
     })
         .then(function () {
-            console.log('Container upped successfully');
-            alert('Container upped successfully');
+            console.log(setLocale(router.locale).container_upped_successfully);
+            alert(setLocale(router.locale).container_upped_successfully);
         })
         .catch(function (error) {
-            console.log("Error: " + error);
-            alert("Error: " + error);
+            console.log(setLocale(router.locale).error + ': ' + error);
+            alert(setLocale(router.locale).error + ': ' + error);
         });
 }
 
-export async function downContainer(value: string) {
+export async function downContainer(value: string, router: any) {
 	await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/stop_container', {
         uuid: value,
     })
         .then(function () {
-            console.log('Container stopped successfully');
-            alert('Container stopped successfully');
+            console.log(setLocale(router.locale).container_stopped_successfully);
+            alert(setLocale(router.locale).container_stopped_successfully);
         })
         .catch(function (error) {
-            console.log("Error: " + error);
-            alert("Error: " + error);
+            console.log(setLocale(router.locale).error + ': ' + error);
+            alert(setLocale(router.locale).error + ': ' + error);
         });
 }
 
-export async function deleteContainer(value: string, setContainers: (e: any) => void) {
+export async function deleteContainer(value: string, setContainers: (e: any) => void, router: any) {
 	await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/delete_container', {
         uuid: value,
     })
         .then(function () {
-            console.log('Container deleted successfully');
-            alert('Container deleted successfully');
+            console.log(setLocale(router.locale).container_deleted_successfully);
+            alert(setLocale(router.locale).container_deleted_successfully);
 
             getContainers(setContainers);
         })
         .catch(function (error) {
-            console.log("Error: " + error);
-            alert("Error: " + error);
+            console.log(setLocale(router.locale).error + ': ' + error);
+            alert(setLocale(router.locale).error + ': ' + error);
         });
 }
 
-export async function getStatistics(setStatistics: (e: any) => void) {
+export async function getStatistics(setStatistics: (e: any) => void, router: any) {
 	const { data: response }: AxiosResponse<Statistics[]> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + '/containers/showAllStates');
     
     response.sort((a, b) => {
@@ -171,6 +121,16 @@ export async function getStatistics(setStatistics: (e: any) => void) {
           return 0;
         }
       });
+
+      for (let stat of response) {
+        if (stat.status === "Active") {
+            stat.status = setLocale(router.locale).active;
+        } else if (stat.status === "Stopped") {
+            stat.status = setLocale(router.locale).stopped;
+        } else {
+            stat.status = setLocale(router.locale).deleted;
+        }
+      }
 
     setStatistics(response);
 }

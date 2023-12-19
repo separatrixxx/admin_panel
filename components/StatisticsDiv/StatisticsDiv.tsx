@@ -1,18 +1,22 @@
 import { StatisticsDivProps } from './StatisticsDiv.props';
 import styles from './StatisticsDiv.module.css';
+import { useRouter } from 'next/router';
+import { setLocale } from 'helpers/locale.helper';
 
 
 export const StatisticsDiv = ({ statistics }: StatisticsDivProps): JSX.Element => {
+    const router = useRouter();
+    
 	return (
 		<table>
             <thead>
                 <tr>
-                    <th className={styles.th}>uuid</th>
-                    <th className={styles.th}>status</th>
-                    <th className={styles.th}>expire</th>
-                    <th className={styles.th}>client</th>
-                    <th className={styles.th}>application</th>
-                    <th className={styles.th}>label</th>
+                    <th className={styles.th}>{setLocale(router.locale).uuid}</th>
+                    <th className={styles.th}>{setLocale(router.locale).status}</th>
+                    <th className={styles.th}>{setLocale(router.locale).expire}</th>
+                    <th className={styles.th}>{setLocale(router.locale).client}</th>
+                    <th className={styles.th}>{setLocale(router.locale).application}</th>
+                    <th className={styles.th}>{setLocale(router.locale).label}</th>
                 </tr>
             </thead>
             <tbody>
