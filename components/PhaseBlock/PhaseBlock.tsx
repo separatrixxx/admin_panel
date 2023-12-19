@@ -10,7 +10,7 @@ export const PhaseBlock = ({ phase, children }: PhaseBlockProps): JSX.Element =>
     
 	return <div className={styles.phaseBlock}>
         <Htag tag='l' className={styles.title}>
-            {setLocale(router.locale).phase + phase}
+            {setLocale(router.locale).phase + ' ' + phase}
         </Htag>
         {children}
     </div>
