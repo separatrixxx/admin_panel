@@ -91,14 +91,6 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
                         }
                     }} />
                 </PhaseBlock>
-                {/* <div className={cn(styles.block, {
-                        [styles.open]: isOpen,
-                    })}>
-                        <a href={url} target='_blank'>{url}</a>
-                        <a href={installLink.replace('XXX', clientId)} target='_blank'>
-                            {installLink.replace('XXX', clientId)}
-                        </a>
-                </div> */}
             </div>
         );
     } else if (part === 'two') {

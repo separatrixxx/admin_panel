@@ -40,13 +40,13 @@
 
 .link {
 	width: fit-content;
-	color: var(--primary);
+	color: var(--white);
 	cursor: pointer;
 	transition-duration: 300ms;
 }
 
 .linkText {
-	color: var(--primary);
+	color: var(--white);
 }
 
 .block > a:active,

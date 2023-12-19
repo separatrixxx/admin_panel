@@ -10,5 +10,7 @@
 }
 
 .td {
-	border: 1px solid var(--dark);
+	border: 1px solid var(--white);
+	color: var(--primary);
+	background: var(--white);
 }

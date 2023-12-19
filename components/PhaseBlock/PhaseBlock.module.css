@@ -5,6 +5,6 @@
 }
 
 .title {
-    color: var(--dark);
-    font-weight: 600;
+    color: var(--white) !important;
+    font-weight: 600 !important;
 }

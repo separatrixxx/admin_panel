@@ -11,6 +11,10 @@ body {
   font-family: var(--font-family);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
+
+  background-image: url('/bg.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 ::-moz-focus-outer,
@@ -56,7 +60,8 @@ a {
 }
 
 :root {
-  --primary: #21C1FF;
+  --primary: #4850E2;
+  --second: #7914DD;
   --white: white;
   --dark: #10122A;
   --error: #FF1500;
