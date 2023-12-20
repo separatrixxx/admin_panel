@@ -11,7 +11,7 @@ export const pt = {
     go: "Ir",
     payment_link_appear_here: "Um link de pagamento aparecerá aqui",
     check_payment: "Verifique o pagamento",
-    connect_amo: "Conecte-se amo",
+    connect_amo: "Conecte-se kommo",
     confirm_payment_first: "Confirme o pagamento primeiro",
     phase: "Estágio",
     up: "LANÇAR",
