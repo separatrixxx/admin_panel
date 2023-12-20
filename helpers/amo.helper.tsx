@@ -9,7 +9,7 @@ export function amoButton(router: any) {
     let state = 'state';
     let logo = 'https://example.com/amocrm_logo.png';
     let scopes = 'crm,notifications';
-    let title = 'amoCRM';
+    let title = 'Log-in with Kommo';
     let compact = false;
     let origin = window.location.href || null;
     let final_scopes
@@ -31,14 +31,13 @@ export function amoButton(router: any) {
     },
     border_background = border_background_colors.default,
     color = colors.default,
-    className = 'amocrm-oauth';
+    className = 'kommo-oauth';
   
     if (!(name && description && redirect_uri && secrets_uri && scopes)) {
       console.error(setLocale(router.locale).amo_button_error);
       return;
     }
   
-    let url_parser = document.createElement('a');
     let button: any = document.createElement('div');
     let button_html: any[] = [
       '<div style="padding-left: 2px; height: 100%; display: flex; background: ' + border_background + '; align-items: center;">',
@@ -89,7 +88,7 @@ export function amoButton(router: any) {
     ].join(';');
     
     let url_array = [
-      'https://www.amocrm.ru/oauth/',
+      'https://www.kommo.com/oauth/',
       '?state=', state,
       '&mode=', mode,
       '&origin=', origin,
@@ -109,7 +108,7 @@ export function amoButton(router: any) {
 
     centerAuthWindow(
       url_array.join(''),
-      'amoCRM'
+      'Kommo'
     );
   };
 
