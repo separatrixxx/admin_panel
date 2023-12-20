@@ -11,7 +11,7 @@ export const en = {
     go: "Go",
     payment_link_appear_here: "A payment link will appear here",
     check_payment: "Check Payment",
-    connect_amo: "Connect amo",
+    connect_amo: "Connect kommo",
     confirm_payment_first: "Confirm payment first",
     phase: "Phase",
     up: "UP",
