@@ -1,9 +1,9 @@
 import { setLocale } from "./locale.helper";
 
-export function amoButton(router: any) {   
+export function amoButton(uuid: string, router: any) {   
     let name = 'Phone validator';
     let description = 'This is Phone validator extension for KOMMO (AMO) CRM';
-    let redirect_uri = 'https://admin.7club.com.br/auth/callback';
+    let redirect_uri = 'https://admin.7club.com.br/auth/callback?uuid=' + uuid;
     let secrets_uri = 'https://admin.7club.com.br/auth/secrets';
     let mode = 'post_message';
     let state = 'state';

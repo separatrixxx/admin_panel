@@ -56,8 +56,8 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
                 </PhaseBlock>
                 <PhaseBlock phase={2}>
                     <Button id='amocrm_oauth' text={setLocale(router.locale).connect_amo} isActive={isPayment} onClick={() => {
-                        if (isPayment) {
-                            amoButton(router);
+                        if (isPayment && typeof router.query.uuid === 'string') {
+                            amoButton(router.query.uuid, router);
                         } else {
                             alert(setLocale(router.locale).confirm_payment_first);
                         }
