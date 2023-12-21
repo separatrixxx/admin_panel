@@ -4,7 +4,7 @@ export const en = {
     lang: "EN",
     part: "Part",
     statistics: "Statistics",
-    amo_id: "amo id",
+    amo_id: "kommo id",
     client_name: "cliet name",
     client_email: "client email",
     client_phone: "client phone",

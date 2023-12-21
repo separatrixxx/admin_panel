@@ -4,9 +4,7 @@ import { Statistics } from "../interfaces/statistics.interface";
 import { setLocale } from "./locale.helper";
 
 
-export async function phaseOne(amoId: string, clientName: string, clientEmail: string, clientPhone: string,
-    setIsOpen: (e: any) => void, setUrl: (e: any) => void, setPaymentLink: (e: any) => void, setInstallLink: (e: any) => void,
-    setIsActive1: (e: any) => void, setIsActive2: (e: any) => void, router: any) {
+export async function phaseOne(amoId: string, clientName: string, clientEmail: string, clientPhone: string, router: any) {
     await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client/', {
         amo_id: amoId,
         client_name: clientName,
@@ -17,15 +15,9 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
             console.log(setLocale(router.locale).phase_one_response);
             alert(setLocale(router.locale).phase_one_response);
 
-            setIsOpen(true);
-            setUrl(response.data.url);
-            setPaymentLink(response.data.payment_link);
-            setInstallLink(response.data.install_link);
-
-            setIsActive1(false);
-            setIsActive2(true);
-
             localStorage.setItem('client', JSON.stringify(response.data));
+
+            router.push(response.data.payment_link);
         })
         .catch(function (error) {
             console.log(setLocale(router.locale).error + ': ' + error);
@@ -33,24 +25,13 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
         });
 }
 
-export async function checkPayment(setIsPayment: (e: any) => void, setIsActive2: (e: any) => void, setIsActive3: (e: any) => void,
-    router: any) {
-    let client = localStorage.getItem('client');
-    
-    if (client) {
-        let clientJSON = JSON.parse(client);
-
+export async function checkPayment(uuid: string | string[] | undefined, setIsPayment: (e: any) => void) {
+    if (typeof uuid === 'string') {
         const { data: response }: AxiosResponse<boolean> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + 
-            '/clients/paid_or_not?uuid=' + clientJSON.uuid);
-
+            '/clients/check_uuid?uuid=' + uuid);
+    
         if (response) {
             setIsPayment(true);
-            alert(setLocale(router.locale).payment_confirmed);
-
-            setIsActive2(false);
-            setIsActive3(true);
-        } else {
-            alert(setLocale(router.locale).payment_not_confirmed);
         }
     }
 }
