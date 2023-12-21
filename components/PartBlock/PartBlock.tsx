@@ -32,7 +32,7 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
         checkPayment(router.query.uuid, setIsPayment)
 		getContainers(setContainers);
         getStatistics(setStatistics, router);
-	}, []);
+	}, [router]);
     
 	if (part === 'one') {
         return (
