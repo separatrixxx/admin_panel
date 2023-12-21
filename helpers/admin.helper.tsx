@@ -13,7 +13,6 @@ export async function phaseOne(amoId: string, clientName: string, clientEmail: s
     })
         .then(function (response) {
             console.log(setLocale(router.locale).phase_one_response);
-            alert(setLocale(router.locale).phase_one_response);
 
             localStorage.setItem('client', JSON.stringify(response.data));
 
