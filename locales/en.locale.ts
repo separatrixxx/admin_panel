@@ -34,4 +34,5 @@ export const en = {
     active: "Active",
     stopped: "Stopped",
     deleted: "Deleted",
+    done: "Done",
 };

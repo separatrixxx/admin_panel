@@ -62,6 +62,8 @@ a {
 :root {
   --primary: #4850E2;
   --second: #7914DD;
+  --done1: #1DD839;
+  --done2: #00AA36;
   --white: white;
   --dark: #10122A;
   --error: #FF1500;

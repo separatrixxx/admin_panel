@@ -26,7 +26,7 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
     const [containers, setContainers] = useState<Container[]>([]);	
     const [statistics, setStatistics] = useState<Statistics[]>([]);
 
-    const [isPayment, setIsPayment] = useState<boolean>(false);
+    const [isPayment, setIsPayment] = useState<boolean>(true);
 
 	useEffect(() => {
         checkPayment(router.query.uuid, setIsPayment)
@@ -46,8 +46,12 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
                         error={false} onChange={(e) => setClientEmail(e.target.value)} />
                     <Input type='number' text={setLocale(router.locale).client_phone} value={clientPhone}
                         error={false} onChange={(e) => setClientPhone(e.target.value)} />
-                    <Button text={setLocale(router.locale).go + '!'} isActive={true} onClick={() => {
-                        phaseOne(amoId, clientName, clientEmail, clientPhone, router);
+                    <Button text={
+                        !isPayment ? setLocale(router.locale).go + '!' : setLocale(router.locale).done
+                    } isActive={true} isDone={isPayment} onClick={() => {
+                        if (!isPayment) {
+                            phaseOne(amoId, clientName, clientEmail, clientPhone, router);
+                        }
                     }} />
                 </PhaseBlock>
                 <PhaseBlock phase={2}>

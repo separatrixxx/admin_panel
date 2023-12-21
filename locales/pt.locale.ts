@@ -34,4 +34,5 @@ export const pt = {
     active: "Ativo",
     stopped: "Parou",
     deleted: "Excluído",
+    done: "Feito",
 };
