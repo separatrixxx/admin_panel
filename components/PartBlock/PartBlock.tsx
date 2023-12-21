@@ -9,7 +9,6 @@ import { ContainersList } from '../ContainersList/ContainersList';
 import { Container } from '../../interfaces/container.interface';
 import { StatisticsDiv } from '../StatisticsDiv/StatisticsDiv';
 import { Statistics } from '../../interfaces/statistics.interface';
-import { Htag } from '../Htag/Htag';
 import { amoButton } from '../../helpers/amo.helper';
 import { useRouter } from 'next/router';
 import { setLocale } from 'helpers/locale.helper';
