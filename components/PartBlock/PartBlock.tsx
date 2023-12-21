@@ -27,13 +27,13 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
     const [containers, setContainers] = useState<Container[]>([]);	
     const [statistics, setStatistics] = useState<Statistics[]>([]);
 
+    const [isPayment, setIsPayment] = useState<boolean>(false);
+
 	useEffect(() => {
         checkPayment(router.query.uuid, setIsPayment)
 		getContainers(setContainers);
         getStatistics(setStatistics, router);
 	}, []);
-
-    const [isPayment, setIsPayment] = useState<boolean>(false);
     
 	if (part === 'one') {
         return (
