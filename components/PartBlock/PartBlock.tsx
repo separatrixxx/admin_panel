@@ -42,9 +42,9 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
                         error={false} onChange={(e) => setAmoId(e.target.value)} />
                     <Input type='text' text={setLocale(router.locale).client_name} value={clientName}
                         error={false} onChange={(e) => setClientName(e.target.value)} />
-                    <Input type='text' text={setLocale(router.locale).client_email} value={clientEmail}
+                    <Input type='text' text='example@email.com' value={clientEmail}
                         error={false} onChange={(e) => setClientEmail(e.target.value)} />
-                    <Input type='number' text={setLocale(router.locale).client_phone} value={clientPhone}
+                    <Input type='number' text='+55 55 5555 5555' value={clientPhone}
                         error={false} onChange={(e) => setClientPhone(e.target.value)} />
                     <Button text={
                         !isPayment ? setLocale(router.locale).go + '!' : setLocale(router.locale).done
