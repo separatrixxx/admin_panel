@@ -1,3 +1,8 @@
+.table {
+	width: 100%;
+	justify-self: center;
+}
+
 .th,
 .td {
 	padding: 5px 20px;
@@ -13,4 +18,12 @@
 	border: 1px solid var(--white);
 	color: var(--primary);
 	background: var(--white);
+}
+
+@media (max-width: 1050px) {
+	.th,
+	.td {
+		padding: 5px;
+		word-break: break-all;
+	}
 }

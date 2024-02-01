@@ -8,7 +8,7 @@ export const StatisticsDiv = ({ statistics }: StatisticsDivProps): JSX.Element =
     const router = useRouter();
     
 	return (
-		<table>
+		<table className={styles.table}>
             <thead>
                 <tr>
                     <th className={styles.th}>{setLocale(router.locale).uuid}</th>

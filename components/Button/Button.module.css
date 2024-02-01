@@ -61,6 +61,12 @@
 
 @media (max-width: 400px) {
 	.button {
+		width: 251.6px;
+	}
+}
+
+@media (max-width: 350px) {
+	.button {
 		width: 201.6px;
 	}
 }
