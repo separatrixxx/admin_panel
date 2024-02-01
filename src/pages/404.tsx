@@ -11,7 +11,7 @@ export default function PageNotFound() {
 				<meta property='og:title' content='Not Found' />
 				<meta property='og:description' content='Not Found' />
 				<meta charSet="utf-8" />
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" href="/logo.png" />
 			</Head>
 			<ErrorPage error={404} />
 		</>

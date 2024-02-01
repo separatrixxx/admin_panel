@@ -4,35 +4,48 @@ import { Statistics } from "../interfaces/statistics.interface";
 import { setLocale } from "./locale.helper";
 
 
-export async function phaseOne(amoId: string, clientName: string, clientEmail: string, clientPhone: string, router: any) {
-    await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client/', {
-        amo_id: amoId,
-        client_name: clientName,
+export async function checkClient(clientDomain: string, clientName: string, clientSurname: string,
+    clientEmail: string, clientPhone: string, router: any, setInstallLink: (e: any) => void) {
+    if (clientDomain.indexOf('|') === -1 && clientDomain.indexOf('/') === -1 && clientDomain.indexOf('\\') === -1 &&
+        clientDomain.indexOf(':') === -1 && clientDomain.slice(0, 8).toLowerCase() !== 'https://' && 
+        clientDomain.slice(0, 7).toLowerCase() !== 'http://' &&
+        (clientDomain.slice(clientDomain.length - 9, clientDomain.length).toLowerCase() === 'kommo.com')
+        || clientDomain.slice(clientDomain.length - 10, clientDomain.length).toLowerCase() === 'amocrm.com') {
+        if (clientDomain.slice(clientDomain.length - 10, clientDomain.length).toLowerCase() === 'amocrm.com') {
+            clientDomain = clientDomain.replace('amocrm', 'kommo');
+        }
+
+        const { data: isClient }: AxiosResponse<boolean> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + 
+            '/clients/check_client_exists?client_name=' + clientDomain);
+    
+        if (!isClient) {
+            phaseOne(clientDomain, clientName, clientSurname, clientEmail, clientPhone, router, setInstallLink);
+        } else {
+            alert(setLocale(router.locale).client_exist);
+        }
+    } else {
+        alert(setLocale(router.locale).invalid_format);
+    }
+}
+
+export async function phaseOne(clientDomain: string, clientName: string, clientSurname: string, clientEmail: string,
+    clientPhone: string, router: any, setInstallLink: (e: any) => void) {
+    await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client2/', {
+        client_name: clientDomain,
+        name: clientName,
+        surname: clientSurname,
         client_email: clientEmail,
         client_phone: clientPhone,
     })
         .then(function (response) {
+            setInstallLink(response.data.install_link);
+
             console.log(setLocale(router.locale).phase_one_response);
-
-            localStorage.setItem('client', JSON.stringify(response.data));
-
-            router.push(response.data.payment_link);
         })
         .catch(function (error) {
             console.log(setLocale(router.locale).error + ': ' + error);
             alert(setLocale(router.locale).error + ': ' + error);
         });
-}
-
-export async function checkPayment(uuid: string | string[] | undefined, setIsPayment: (e: any) => void) {
-    if (typeof uuid === 'string') {
-        const { data: response }: AxiosResponse<boolean> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + 
-            '/clients/check_uuid?uuid=' + uuid);
-    
-        if (response) {
-            setIsPayment(true);
-        }
-    }
 }
 
 export async function getContainers(setContainers: (e: any) => void) {

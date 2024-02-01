@@ -1,11 +1,12 @@
 .wrapper {
 	display: grid;
 
-	width: 100%;
+	width: 70%;
 	justify-items: center;
 	grid-template-columns: auto auto;
 	gap: 20px;
 	margin: 30px 0;
+	z-index: 2;
 }
 
 .partTwoDiv {
@@ -50,15 +51,36 @@
 }
 
 .block > a:active,
-.link:active {
+.link:active,
+.installLink {
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	
 	filter: brightness(0.9);
 }
 
+.installLinkDiv {
+	background: var(--primary);
+	padding: 10px 20px;
+	display: grid;
+	justify-items: center;
+	align-items: center;
+	border-radius: 10px;
+}
+
+.installLink {
+	cursor: pointer;
+	transition-duration: 300ms;
+}
+
+.installLink,
+.installHtag {
+	color: var(--light) !important;
+}
+
 @media (min-width: 1024px) {
 	.block > a:hover,
-	.link:hover {
+	.link:hover,
+	.installLink {
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 		filter: brightness(0.9);

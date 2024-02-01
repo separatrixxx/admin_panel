@@ -11,7 +11,7 @@ export default function PageServerFailure() {
 				<meta property='og:title' content='Server Failure' />
 				<meta property='og:description' content='Server Failure' />
 				<meta charSet="utf-8" />
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" href="/logo.png" />
 			</Head>
 			<ErrorPage error={500} />
 		</>

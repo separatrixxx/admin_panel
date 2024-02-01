@@ -1,0 +1,9 @@
+stages:
+  - trigger
+
+update_main_project:
+  stage: trigger
+  script:
+    - "curl -X POST --fail -F token=$TOKEN -F ref=$REF_NAME https://gitlab.com/api/v4/projects/52820591/trigger/pipeline"
+  only:
+    - main

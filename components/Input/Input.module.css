@@ -16,10 +16,6 @@
 	font-weight: 500;
 }
 
-/* .input:focus {
-	border: 2px solid var(--primary) !important;
-} */
-
 .input:active {
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 

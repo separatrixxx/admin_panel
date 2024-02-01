@@ -20,15 +20,14 @@
 .button:active {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-    color: var(--primary);
-	background: var(--white);
+    filter: brightness(0.9);
 }
 
 .disabled {
 	cursor: auto;
 	color: var(--white) !important;
 	background: linear-gradient(93deg, var(--second) 0%, var(--primary) 100%) !important;
-	filter: brightness(0.8);
+	filter: brightness(0.8) !important;
 }
 
 .done {
@@ -41,8 +40,7 @@
 	.button:hover {
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-		color: var(--primary);
-		background: var(--white);	
+		filter: brightness(0.9);	
 	}
 }
 

@@ -1,0 +1,18 @@
+.header {
+    position: fixed;
+    top: 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    width: 100%;
+    height: fit-content;
+    background: var(--bg);
+    padding: 5px 0;
+    align-items: center;
+    z-index: 3;
+    filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.2)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+}
+
+.logo > svg {
+    width: 100px;
+    margin-left: 30px;
+}

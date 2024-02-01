@@ -11,7 +11,7 @@ export default function Home() {
         <title>Admin panel</title>
         <meta name="description" content="Admin panel" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
       </Head>
       <MainPage />
     </>

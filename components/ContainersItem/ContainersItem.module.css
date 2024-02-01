@@ -30,7 +30,9 @@
 
 .containerButtons {
     display: grid;
-    grid-template-columns: auto auto auto;
+    width: 100%;
+    grid-template-columns: auto;
+    justify-items: center;
     gap: 10px;
 }
 
