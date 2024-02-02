@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { Container } from "../interfaces/container.interface";
 import { Statistics } from "../interfaces/statistics.interface";
 import { setLocale } from "./locale.helper";
+import { User } from "interfaces/user.interface";
 
 
 export async function checkClient(clientDomain: string, clientName: string, clientSurname: string,
@@ -126,4 +127,26 @@ export async function getStatistics(setStatistics: (e: any) => void, router: any
       }
 
     setStatistics(response);
+}
+
+export async function getUsers(setUsers: (e: any) => void) {
+	const { data: response }: AxiosResponse<User[]> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + '/clients/all_client_states');
+
+    setUsers(response);
+}
+
+export async function deleteUser(uuid: string, setUsers: (e: any) => void, router: any) {
+	await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clinets/delete_client2', {
+        uuid: uuid,
+    })
+        .then(function () {
+            console.log(setLocale(router.locale).client_deleted_successfully);
+            alert(setLocale(router.locale).client_deleted_successfully);
+
+            getUsers(setUsers);
+        })
+        .catch(function (error) {
+            console.log(setLocale(router.locale).error + ': ' + error);
+            alert(setLocale(router.locale).error + ': ' + error);
+        });
 }

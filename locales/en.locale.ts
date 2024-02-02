@@ -42,4 +42,11 @@ export const en = {
     password: "Password",
     log_in: "Log In",
     wrong_password: "Wrong password",
+    add_container: "Add container",
+    containers: "Containers",
+    users: "Clients",
+    add_user: "Add client",
+    client_id: "Client Id",
+	domain: "Domain",
+    client_deleted_successfully: "Client deleted successfully",
 };

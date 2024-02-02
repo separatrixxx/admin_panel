@@ -6,7 +6,7 @@
     justify-items: center;
 }
 
-.containerDiv {
+.usersDiv {
     display: grid;
     width: 100%;
     height: fit-content;
@@ -22,14 +22,14 @@
 	background: var(--primary);
 }
 
-.containerDiv:active {
+.usersDiv:active {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
     color: var(--primary);
 	background: var(--white);
 }
 
-.containerButtons {
+.usersButtons {
     display: grid;
     width: 100%;
     grid-template-columns: auto;
@@ -38,7 +38,7 @@
 }
 
 @media (min-width: 1024px) {
-	.containerDiv:hover {
+	.usersDiv:hover {
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 		color: var(--primary);

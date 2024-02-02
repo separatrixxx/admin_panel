@@ -16,8 +16,6 @@ export const ContainersItem = ({ value, label, statistics, setContainers }: Cont
     let status: string = '';
     let expire: string = '';
 
-    console.log(statistics)
-
     for (let stat of statistics) {
         if (stat.uuid === value) {
             status = stat.status;

@@ -13,7 +13,7 @@ import { Input } from 'components/Input/Input';
 export const MainPage = (): JSX.Element => {
     const router = useRouter();
 
-    const [part, setPart] = useState<'one' | 'two' | 'three' | 'none'>('none');
+    const [part, setPart] = useState<'one' | 'two' | 'three' | 'four' | 'five' | 'none'>('none');
 
     const [isLogged, setIsLogged] = useState<boolean>(false);
 
@@ -44,30 +44,46 @@ export const MainPage = (): JSX.Element => {
             </div>
             {
                 isLogged ?
-                    <div className={styles.mainBlock}>
-                        <Button text={setLocale(router.locale).part + ' 1'} isActive={true} onClick={() => {
-                            if (part !== 'one') { 
-                                setPart('one');
-                            } else {
-                                setPart('none');
-                            }
-                        }} />
-                        <Button text={setLocale(router.locale).part + ' 2'} isActive={true} onClick={() => {
-                            if (part !== 'two') {
-                                setPart('two');
-                            } else {
-                                setPart('none');
-                            }
-                        }} />
-                        <Button text={setLocale(router.locale).statistics} isActive={true} onClick={() => {
-                            if (part !== 'three') { 
-                                setPart('three');
-                            } else {
-                                setPart('none');
-                            }
-                        }} />
+                    <>
+                        <div className={styles.mainBlock}>
+                            <Button text={setLocale(router.locale).add_container} isActive={true} onClick={() => {
+                                if (part !== 'one') { 
+                                    setPart('one');
+                                } else {
+                                    setPart('none');
+                                }
+                            }} />
+                            <Button text={setLocale(router.locale).containers} isActive={true} onClick={() => {
+                                if (part !== 'two') {
+                                    setPart('two');
+                                } else {
+                                    setPart('none');
+                                }
+                            }} />
+                            <Button text={setLocale(router.locale).add_user} isActive={true} onClick={() => {
+                                if (part !== 'four') { 
+                                    setPart('four');
+                                } else {
+                                    setPart('none');
+                                }
+                            }} />
+                            <Button text={setLocale(router.locale).users} isActive={true} onClick={() => {
+                                if (part !== 'five') { 
+                                    setPart('five');
+                                } else {
+                                    setPart('none');
+                                }
+                            }} />
+                            <Button text={setLocale(router.locale).statistics} isActive={true} onClick={() => {
+                                if (part !== 'three') { 
+                                    setPart('three');
+                                } else {
+                                    setPart('none');
+                                }
+                            }} />
+                        </div>
                         <PartBlock part={part} />
-                    </div>
+                    </>
                 :
                     <div className={styles.mainBlock}>
                         <Input type='text' text={setLocale(router.locale).password} value={password}

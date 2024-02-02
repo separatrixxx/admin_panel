@@ -42,4 +42,11 @@ export const pt = {
     password: "Senha",
     log_in: "Conecte-se",
     wrong_password: "Senha incorreta",
+    add_container: "Adicionar contêiner",
+    containers: "Containers",
+    users: "Clientes",
+    add_user: "Adicionar cliente",
+    client_id: "Id do Cliente",
+	domain: "Domínio",
+    client_deleted_successfully: "Cliente excluído com sucesso",
 };
