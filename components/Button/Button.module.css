@@ -1,6 +1,6 @@
 .button {
-    width: 406.6px;
-	height: 51.6px;
+    width: 200px;
+	height: 40px;
 	padding: 5px;
 	padding-left: 20px;
 
@@ -12,7 +12,7 @@
 	outline: none;
 	background: linear-gradient(93deg, var(--second) 0%, var(--primary) 100%);
 
-	font-size: 20px;
+	font-size: 14px;
 	font-weight: 600;
     cursor: pointer;
 }
@@ -44,29 +44,12 @@
 	}
 }
 
-@media (max-width: 1024px) {
-	.button {
-		font-size: 22px;
-	}
-}
-
 @media (max-width: 580px) {
 	.button {
-		width: 301.6px;
+		width: 150px;
+		height: 35px;
 		padding-left: 15px;
 
-		font-size: 20px;
-	}
-}
-
-@media (max-width: 400px) {
-	.button {
-		width: 251.6px;
-	}
-}
-
-@media (max-width: 350px) {
-	.button {
-		width: 201.6px;
+		font-size: 12px;
 	}
 }

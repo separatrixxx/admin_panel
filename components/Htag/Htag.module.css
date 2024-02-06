@@ -4,8 +4,6 @@
 .s {
 	width: fit-content;
 	margin: 0;
-
-	color: var(--dark);
 }
 
 .xxl {
@@ -38,9 +36,8 @@
 
 .s {
 	font-size: 12px;
-	font-weight: 500;
+	font-weight: 700;
 	font-style: normal;
-	line-height: normal;
 }
 
 @media (max-width: 1550px) {

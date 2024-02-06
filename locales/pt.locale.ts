@@ -49,4 +49,5 @@ export const pt = {
     client_id: "Id do Cliente",
 	domain: "Domínio",
     client_deleted_successfully: "Cliente excluído com sucesso",
+    extend: "AMPLIAR",
 };

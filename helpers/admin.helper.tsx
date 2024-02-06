@@ -31,7 +31,7 @@ export async function checkClient(clientDomain: string, clientName: string, clie
 
 export async function phaseOne(clientDomain: string, clientName: string, clientSurname: string, clientEmail: string,
     clientPhone: string, router: any, setInstallLink: (e: any) => void) {
-    await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client2/', {
+    await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client/', {
         client_name: clientDomain,
         name: clientName,
         surname: clientSurname,
@@ -150,3 +150,11 @@ export async function deleteUser(uuid: string, setUsers: (e: any) => void, route
             alert(setLocale(router.locale).error + ': ' + error);
         });
 }
+
+export async function extendUser(uuid: string, setPaymentLink: (e: any) => void) {
+	const { data: response }: AxiosResponse<string> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN
+        + '/clients/paylink_client?uuid=' + uuid);
+
+    setPaymentLink(response);
+}
+

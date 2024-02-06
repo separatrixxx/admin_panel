@@ -20,6 +20,7 @@
 	border: 1px solid var(--primary) !important;
 	border-radius: 7px;
 	background: var(--primary);
+    gap: 5px;
 }
 
 .containerDiv:active {
@@ -32,7 +33,7 @@
 .containerButtons {
     display: grid;
     width: 100%;
-    grid-template-columns: auto;
+    grid-template-columns: auto auto;
     justify-items: center;
     gap: 10px;
 }
@@ -44,4 +45,10 @@
 		color: var(--primary);
 		background: var(--white);	
 	}
+}
+
+@media (max-width: 350px) {
+    .containerButtons {
+        grid-template-columns: auto;
+    }
 }

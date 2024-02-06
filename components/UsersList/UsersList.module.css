@@ -1,6 +1,31 @@
 .usersDiv {
+    width: 30%;
     display: grid;
     grid-template-columns: auto;
     gap: 20px;
     justify-items: center;
+}
+
+@media (max-width: 1024px) {
+    .usersDiv {
+        width: 50%;
+    }
+}
+
+@media (max-width: 850px) {
+    .usersDiv {
+        width: 60%;
+    }
+}
+
+@media (max-width: 700px) {
+    .usersDiv {
+        width: 70%;
+    }
+}
+
+@media (max-width: 600px) {
+    .usersDiv {
+        width: 80%;
+    }
 }

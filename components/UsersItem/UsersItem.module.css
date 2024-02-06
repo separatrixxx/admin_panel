@@ -20,6 +20,7 @@
 	border: 1px solid var(--primary) !important;
 	border-radius: 7px;
 	background: var(--primary);
+    gap: 5px;
 }
 
 .usersDiv:active {
@@ -32,9 +33,20 @@
 .usersButtons {
     display: grid;
     width: 100%;
-    grid-template-columns: auto;
+    grid-template-columns: auto auto;
     justify-items: center;
     gap: 10px;
+}
+
+.paymentLinkDiv {
+    width: 100%;
+    max-width: 200px;
+    background: linear-gradient(93deg, var(--second) 0%, var(--primary) 100%);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 10px;
+    overflow-wrap: break-word;
+    text-align: center;
 }
 
 @media (min-width: 1024px) {
@@ -44,4 +56,16 @@
 		color: var(--primary);
 		background: var(--white);	
 	}
+}
+
+@media (max-width: 580px) {
+    .paymentLinkDiv {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 390px) {
+    .usersButtons {
+        grid-template-columns: auto;
+    }
 }

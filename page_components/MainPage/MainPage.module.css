@@ -34,11 +34,29 @@
 	align-items: center;
 	justify-items: center;
 	gap: 20px;
-	grid-template-columns: auto auto;
+	grid-template-columns: repeat(5, auto);
 	margin-top: 100px;
 }
 
+@media (max-width: 1200px) {
+	.mainBlock {
+		grid-template-columns: repeat(4, auto);
+	}
+}
+
 @media (max-width: 1024px) {
+	.mainBlock {
+		grid-template-columns: repeat(3, auto);
+	}
+}
+
+@media (max-width: 700px) {
+	.mainBlock {
+		grid-template-columns: repeat(2, auto);
+	}
+}
+
+@media (max-width: 350px) {
 	.mainBlock {
 		grid-template-columns: auto;
 	}

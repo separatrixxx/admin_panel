@@ -49,4 +49,5 @@ export const en = {
     client_id: "Client Id",
 	domain: "Domain",
     client_deleted_successfully: "Client deleted successfully",
+    extend: "EXTEND",
 };

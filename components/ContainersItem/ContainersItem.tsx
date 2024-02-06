@@ -28,16 +28,16 @@ export const ContainersItem = ({ value, label, statistics, setContainers }: Cont
 	return (
 		<div className={styles.wrapper}>
             <div className={styles.containerDiv} onClick={() => setIsOpen(!isOpen)}>
-                <Htag tag='m'>
+                <Htag tag='s'>
                     {label}
                 </Htag>
-                <Htag tag='m'>
+                <Htag tag='s'>
                     {setLocale(router.locale).uuid + ': ' + value}
                 </Htag>
-                <Htag tag='m'>
+                <Htag tag='s'>
                     {setLocale(router.locale).status + ': ' + status}
                 </Htag>
-                <Htag tag='m'>
+                <Htag tag='s'>
                     {setLocale(router.locale).expire + ': ' + expire}
                 </Htag>
             </div>
