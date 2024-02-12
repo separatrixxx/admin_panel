@@ -106,20 +106,6 @@ export async function deleteContainer(value: string, setContainers: (e: any) => 
         });
 }
 
-export async function addTrial(value: string, router: any) {
-	await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/add_container2', {
-        uuid: value,
-    })
-        .then(function () {
-            console.log(setLocale(router.locale).container_added_successfully);
-            alert(setLocale(router.locale).container_added_successfully);
-        })
-        .catch(function (error) {
-            console.log(setLocale(router.locale).error + ': ' + error);
-            alert(setLocale(router.locale).error + ': ' + error);
-        });
-}
-
 export async function getStatistics(setStatistics: (e: any) => void, router: any) {
 	const { data: response }: AxiosResponse<Statistics[]> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + '/containers/showAllStates');
     
