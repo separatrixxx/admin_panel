@@ -9,7 +9,7 @@ export const pt = {
     client_surname: "Sobrenome",
     client_email: "Email do Cliente",
     client_phone: "Telefone do Cliente",
-    go: "Ir",
+    go: "Adicionar",
     install_link_appear_here: "Um link de instalação aparecerá aqui",
     check_payment: "Verifique o pagamento",
     connect_amo: "Conecte-se kommo",
@@ -27,6 +27,8 @@ export const pt = {
     amo_button_error: "Nenhum client_id ou client_secret ou tag de script ou metadados",
     error: "Erro",
     phase_one_response: "Os dados do cliente foram enviados para o servidor, estamos aguardando um link",
+    client_added_successfully: "Cliente adicionado com sucesso",
+    container_added_successfully: "Contêiner adicionado com sucesso",
     payment_confirmed: "Pagamento confirmado",
     payment_not_confirmed: "Pagamento não confirmado",
     container_upped_successfully: "Contêiner iniciado com sucesso",
@@ -50,4 +52,5 @@ export const pt = {
 	domain: "Domínio",
     client_deleted_successfully: "Cliente excluído com sucesso",
     extend: "AMPLIAR",
+    add_trial: "Adicionar teste",
 };

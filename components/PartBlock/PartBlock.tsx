@@ -56,7 +56,7 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
                         error={false} onChange={(e) => setClientPhone(e.target.value)} />
                     <Button text={setLocale(router.locale).go} isActive={true} isDone={false} 
                         onClick={() => checkClient(clientDomain, clientName, clientSurname, clientEmail, clientPhone, 
-                            router, setInstallLink)} />
+                            'container', router, setInstallLink)} />
                 </PhaseBlock>
                 <PhaseBlock>
                     <div className={styles.installLinkDiv}>
@@ -107,7 +107,7 @@ export const PartBlock = ({ part }: PartBlockProps): JSX.Element => {
                         error={false} onChange={(e) => setClientPhone(e.target.value)} />
                     <Button text={setLocale(router.locale).go} isActive={true} isDone={false} 
                         onClick={() => checkClient(clientDomain, clientName, clientSurname, clientEmail, clientPhone, 
-                            router, setInstallLink)} />
+                            'client', router, setInstallLink)} />
                 </PhaseBlock>
             </div>
         );

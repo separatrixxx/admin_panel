@@ -9,7 +9,7 @@ export const en = {
     client_surname: "Surname",
     client_email: "Email",
     client_phone: "Phone",
-    go: "Go",
+    go: "Add",
     install_link_appear_here: "A install link will appear here",
     check_payment: "Check Payment",
     connect_amo: "Connect kommo",
@@ -27,6 +27,8 @@ export const en = {
     amo_button_error: "No client_id or client_secret or script tag or metadata",
     error: "Error",
     phase_one_response: "Client data has been sent to the server, we are waiting for a link",
+    client_added_successfully: "Client added successfully",
+    container_added_successfully: "Container added successfully",
     payment_confirmed: "Payment confirmed",
     payment_not_confirmed: "Payment not confirmed",
     container_upped_successfully: "Container upped successfully",
@@ -50,4 +52,5 @@ export const en = {
 	domain: "Domain",
     client_deleted_successfully: "Client deleted successfully",
     extend: "EXTEND",
+    add_trial: "Add Trial",
 };

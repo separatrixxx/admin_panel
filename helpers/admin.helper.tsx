@@ -6,7 +6,8 @@ import { User } from "interfaces/user.interface";
 
 
 export async function checkClient(clientDomain: string, clientName: string, clientSurname: string,
-    clientEmail: string, clientPhone: string, router: any, setInstallLink: (e: any) => void) {
+    clientEmail: string, clientPhone: string, type: 'container' | 'client', router: any,
+    setInstallLink: (e: any) => void) {
     if (clientDomain.indexOf('|') === -1 && clientDomain.indexOf('/') === -1 && clientDomain.indexOf('\\') === -1 &&
         clientDomain.indexOf(':') === -1 && clientDomain.slice(0, 8).toLowerCase() !== 'https://' && 
         clientDomain.slice(0, 7).toLowerCase() !== 'http://' &&
@@ -20,7 +21,7 @@ export async function checkClient(clientDomain: string, clientName: string, clie
             '/clients/check_client_exists?client_name=' + clientDomain);
     
         if (!isClient) {
-            phaseOne(clientDomain, clientName, clientSurname, clientEmail, clientPhone, router, setInstallLink);
+            phaseOne(clientDomain, clientName, clientSurname, clientEmail, clientPhone, type, router, setInstallLink);
         } else {
             alert(setLocale(router.locale).client_exist);
         }
@@ -30,7 +31,7 @@ export async function checkClient(clientDomain: string, clientName: string, clie
 }
 
 export async function phaseOne(clientDomain: string, clientName: string, clientSurname: string, clientEmail: string,
-    clientPhone: string, router: any, setInstallLink: (e: any) => void) {
+    clientPhone: string, type: 'container' | 'client', router: any, setInstallLink: (e: any) => void) {
     await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client/', {
         client_name: clientDomain,
         name: clientName,
@@ -41,7 +42,13 @@ export async function phaseOne(clientDomain: string, clientName: string, clientS
         .then(function (response) {
             setInstallLink(response.data.install_link);
 
-            console.log(setLocale(router.locale).phase_one_response);
+            if (type === 'container') {
+                console.log(setLocale(router.locale).phase_one_response);
+                alert(setLocale(router.locale).phase_one_response);
+            } else {
+                console.log(setLocale(router.locale).client_added_successfully);
+                alert(setLocale(router.locale).client_added_successfully);
+            }
         })
         .catch(function (error) {
             console.log(setLocale(router.locale).error + ': ' + error);
@@ -99,6 +106,20 @@ export async function deleteContainer(value: string, setContainers: (e: any) => 
         });
 }
 
+export async function addTrial(value: string, router: any) {
+	await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/containers/add_container2', {
+        uuid: value,
+    })
+        .then(function () {
+            console.log(setLocale(router.locale).container_added_successfully);
+            alert(setLocale(router.locale).container_added_successfully);
+        })
+        .catch(function (error) {
+            console.log(setLocale(router.locale).error + ': ' + error);
+            alert(setLocale(router.locale).error + ': ' + error);
+        });
+}
+
 export async function getStatistics(setStatistics: (e: any) => void, router: any) {
 	const { data: response }: AxiosResponse<Statistics[]> = await axios.get(process.env.NEXT_PUBLIC_DOMAIN + '/containers/showAllStates');
     
@@ -136,7 +157,7 @@ export async function getUsers(setUsers: (e: any) => void) {
 }
 
 export async function deleteUser(uuid: string, setUsers: (e: any) => void, router: any) {
-	await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clinets/delete_client2', {
+	await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/delete_client2', {
         uuid: uuid,
     })
         .then(function () {
