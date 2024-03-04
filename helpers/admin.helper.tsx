@@ -34,8 +34,8 @@ export async function phaseOne(clientDomain: string, clientName: string, clientS
     clientPhone: string, type: 'container' | 'client', router: any, setInstallLink: (e: any) => void) {
     await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/clients/add_client/', {
         client_name: clientDomain,
-        name: clientName,
-        surname: clientSurname,
+        cl_name: clientName,
+        cl_surname: clientSurname,
         client_email: clientEmail,
         client_phone: clientPhone,
     })
